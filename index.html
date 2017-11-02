@@ -93,6 +93,94 @@
 
             <h3>¿Qué es la integridad referencial?</h3>
             <p>La <strong>integridad referencial</strong> es un sistema compuesto por reglas que permiten la garantía de las relaciones entre las filas de la tabla relacionadas para que sean válidas y que estas relaciones no se eliminen ni se modifiquen por error.</p>
+
+            <h3>Motores SQL</h3>
+            <!-- Lista desordenada -->
+            <ul>
+                <li>DB2</li>
+                <li>Firebird</li>
+                <li>HSQL</li>
+                <li>Informix</li>
+                <li>Interbase</li>
+                <li>MariaDB</li>
+                <li><strong>Microsoft SQL Server</strong></li>
+                <li><strong>Oracle</strong></li>
+                <li><strong>PostgreSQL</strong></li>
+                <li>Progress</li>
+                <li>PervasiveSQL</li>
+                <li><strong>SQLite</strong></li>
+                <li>Sybase ASE</li>
+                <li><strong>MySQL</strong></li>
+            </ul>
+
+            <h3>Ventajas y desventajas de SQL</h3>
+            <p>
+                Las ventajas de <strong>SQL</strong> son:
+                <!-- Lista desordenada -->
+                <ul>
+                    <li>Son transaccionales y no se perderá ningún dato.</li>
+                    <li>Existe álgebra y cálculo relacional.</li>
+                    <li>Estándares <strong>SQL</strong>.</li>
+                    <li>Fundamentos relacionales.</li>
+                    <li>Procedimientos almacenados en diferentes lenguajes.</li>
+                </ul>
+            </p>
+            <p>
+                Las desventajas de <strong>SQL</strong> son:
+                <!-- Lista desordenada -->
+                <ul>
+                    <li>Realizar cambios a una tabla muy grande puede ser un gran dolor de cabeza.</li>
+                    <li>Pueden tener problemas de <strong>performance</strong> dependiendo de discos duros y otras operaciones IO.</li>
+                    <li>No todas tienen integridad referencial.</li>
+                    <li>No son compatibles entre <strong>BDs</strong>.</li>
+                </ul>
+            </p>
+
+            <h2>Fundamentos de NoSQL</h2>
+            
+            <h3>¿Qué es NoSQL?</h3>
+            <p><strong>NoSQL</strong> es la abreviación de <strong>Not Only SQL</strong>, al hablar de este tipo de <strong>base de datos</strong> se hace referencia a una amplia clase de sistemas de administración de datos que difieren del modelo "clásico" de relaciones entre entidades. En otro termino es cualquier otro motor o <strong>base de datos</strong> que <b>NO</b> use <strong>SQL</strong>.</p>
+
+            <h3>Tipos de base de datos NoSQL</h3>
+
+            <h4>Bases de datos documentales</h4>
+            <p>Este tipo de <strong>base de datos</strong> son las más versátiles, se guarda los datos como un documento por medio de <strong>JSON</strong>, <strong>BSON</strong> o <strong>XML</strong>, utilizando una clave única para cada registro. En este tipo de implementación se permite recuperar datos por medio de busquedas de <strong>clave - valor</strong>.</p>
+<pre>
+    {
+        "id": "10280",
+        "city": "NEW YORK",
+        "state": "NY",
+        "pop": "5574",
+        "loc": [
+            -74.016323,
+            40.710537
+        ]
+    }
+</pre>
+            <div class="row">
+                <div class="col-md-2"><img src="https://redash.io/assets/images/temp/Mongo2.png" alt="MongoDB" class="img-responsive"></div>
+                <div class="col-md-2"><img src="http://docs.couchdb.org/en/1.6.1/_static/logo.png" alt="CouchDB" class="img-responsive"></div>
+                <div class="col-md-4"><img src="https://onehippo-prod.global.ssl.fastly.net/binaries/ninecolumn/content/gallery/onehippo/webinars/logos/couchbase_logo.png" alt="CouchBase" class="img-responsive"></div>
+                <div class="col-md-2"><img src="http://ayende.com/blog/Images/Windows-Live-Writer/RavenDB--NHibernate-Training_DCA7/RavenDBliconBurgandy_6.png" alt="RavenDB" class="img-responsive"></div>
+                <div class="col-md-2"><img src="https://pbs.twimg.com/profile_images/2260283463/djondb_cross_400x400.png" alt="Djondb" class="img-responsive"></div>
+            </div>
+
+            
+            <h4>Bases de datos orientadas a grafos</h4>
+            <p>
+                Este tipo de <strong>base de datos</strong> es usado para relacionar datos representandolos mediante grafos. Los datos son almacenados en estructuras de grafos con nodos (entidades), con propiedades (información entre entidades) y líneas (conexiones entre las entidades).
+                <img src="https://s3.amazonaws.com/dev.assets.neo4j.com/wp-content/uploads/20161101022535/node-js-react-js-neo4j-template.png" alt="Grafos" class="img-responsive">
+            </p>
+
+            <h4>Bases de datos clave - valor</h4>
+            <p>Este modelo de <strong>base de datos</strong> es el más sencillo en cuanto a funcionabilidad y el más popular. En este tipo de sistema cada elemento esta identificado por una clave única, permitiendo así la recuperación de datos de forma muy rápida. Su eficiencia de lectura y escritura la carácterizan.</p>
+            <div class="row">
+                <div class="col-md-4"><img src="https://cdn.worldvectorlogo.com/logos/redis.svg" alt="Redis" class="img-responsive"></div>
+                <div class="col-md-4"><img src="https://cdn-images-1.medium.com/max/1920/1*qp3u7D_FkGlFeBPUx7hcLg.png" alt="Dynamo" class="img-responsive"></div>
+                <div class="col-md-4"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Cassandra_logo.svg/1200px-Cassandra_logo.svg.png" alt="Cassandra" class="img-responsive"></div>
+            </div>
+
+            
         </section>
 
         <section>
