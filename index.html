@@ -38,11 +38,61 @@
 
     <div class="container">
         <section>
-            <h2>¿Qué es SQL y NoSQL?</h2>
+            <h2>Fundamentos de SQL (Structured Query Language)</h2>
+            
+            <h3>Introducción a SQL</h3>
+            <p><strong>SQL (Structured Query Language)</strong> o en español <strong>Lenguaje de Consulta Estructurado</strong> es un lenguaje de acceso a <strong>bases de datos</strong> relacionales por medio de distintos tipos de operaciones que permiten recuperar información de ellas de forma sencilla.</p>
+            
+            <h3>DDL, DML, DCL y TCL</h3>
+            <!-- Lista desordenada -->
+            <h4>DDL (Data Definition Language):</h4>
+            <p>
+                Permite crear y modificar la estructura de una <strong>base de datos</strong>.
+                <!-- Lista desordenada -->
+                <ul>
+                    <li><strong>CREATE:</strong> Utilizado para crear nuevas tablas, campos e índices.</li>
+                    <li><strong>ALTER:</strong> Utilizado para modificar las tablas agregando campos o cambiando la definición de los campos.</li>
+                    <li><strong>DROP:</strong> Empleado para eliminar tablas e índices.</li>
+                    <li><strong>TRUNCATE:</strong> Empleado para eliminar todos los registros de una tabla.</li>
+                    <li><strong>COMMENT:</strong> Utilizado para agregar comentarios al diccionario de datos.</li>
+                    <li><strong>RENAME:</strong> Tal como su nombre lo indica es utilizado para renombrar objetos.</li>
+                </ul>
+            </p>
 
-            <h2>Mysql</h2>
-            <h3>Instalación de MySQL</h3>
-            <p></p>
+            <h4>DML (Data Manipulation Language):</h4>
+            <p>
+                Permite recuperar, almacenar, modificar, eliminar, insertar y actualizar datos de una <strong>base de datos</strong>.
+                <!-- Lista desordenada -->
+                <ul>
+                    <li><strong>SELECT:</strong> Utilizado para consultar registros de la <strong>base de datos</strong> que satisfagan un criterio determinado.</li>
+                    <li><strong>INSERT:</strong> Utilizado para cargar de datos en la <strong>base de datos</strong> en una única operación.</li>
+                    <li><strong>UPDATE:</strong> Utilizado para modificar los valores de los campos y registros especificados</li>
+                    <li><strong>DELETE:</strong> Utilizado para eliminar registros de una tabla de una <strong>base de datos</strong>.</li>
+                </ul>
+            </p>
+
+            <h4>DCL (Data Control Language):</h4>
+            <p>
+                Permite crear roles, permisos e integridad referencial, así como el control al acceso a la <strong>base de datos</strong>.
+                <!-- Lista desordenada -->
+                <ul>
+                    <li><strong>GRANT:</strong> Usado para otorgar privilegios de acceso de usuario a la <strong>base de datos</strong>.</li>
+                    <li><strong>REVOKE:</strong> Utilizado para retirar privilegios de acceso otorgados con el comando GRANT.</li>
+                </ul>
+            </p>
+
+            <h4>TCL (Transactional Control Language):</h4>
+            <p>
+                Permite administrar diferentes transacciones que ocurren dentro de una <strong>base de datos</strong>.
+                <!-- Lista desordenada -->
+                <ul>
+                    <li><strong>COMMIT:</strong> Empleado para guardar el trabajo hecho.</li>
+                    <li><strong>ROLLBACK:</strong> Utilizado para deshacer la modificación que hice desde el último COMMIT.</li>
+                </ul>
+            </p>
+
+            <h3>¿Qué es la integridad referencial?</h3>
+            <p>La <strong>integridad referencial</strong> es un sistema compuesto por reglas que permiten la garantía de las relaciones entre las filas de la tabla relacionadas para que sean válidas y que estas relaciones no se eliminen ni se modifiquen por error.</p>
         </section>
 
         <section>
