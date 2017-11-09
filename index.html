@@ -173,14 +173,75 @@
             </p>
 
             <h4>Bases de datos clave - valor</h4>
-            <p>Este modelo de <strong>base de datos</strong> es el más sencillo en cuanto a funcionabilidad y el más popular. En este tipo de sistema cada elemento esta identificado por una clave única, permitiendo así la recuperación de datos de forma muy rápida. Su eficiencia de lectura y escritura la carácterizan.</p>
+            <p>Este modelo de <strong>base de datos</strong> es el más sencillo en cuanto a funcionalidad y el más popular. En este tipo de sistema cada elemento esta identificado por una clave única, permitiendo así la recuperación de datos de forma muy rápida. Su eficiencia de lectura y escritura la carácterizan.</p>
             <div class="row">
                 <div class="col-md-4"><img src="https://cdn.worldvectorlogo.com/logos/redis.svg" alt="Redis" class="img-responsive"></div>
                 <div class="col-md-4"><img src="https://cdn-images-1.medium.com/max/1920/1*qp3u7D_FkGlFeBPUx7hcLg.png" alt="Dynamo" class="img-responsive"></div>
                 <div class="col-md-4"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Cassandra_logo.svg/1200px-Cassandra_logo.svg.png" alt="Cassandra" class="img-responsive"></div>
             </div>
 
+            <h2>Generación y diseño de una base de datos con MySQL</h2>
+
+            <h3>Introducción a MySQL: Uso de shell, comandos básicos y tablas</h3>
+    
+            <p><strong>MySQL</strong> es la <strong>base de datos</strong> de código abierto más popular del mercado.</p>
             
+            <h4>¿Como instalar MySQL?</h4>
+            <p>En la página oficial de <strong>MySQL</strong> puedes consultar los <a href="https://dev.mysql.com/downloads/repo/apt/" target="_blank">pasos de instalación</a>.</p>
+
+            <h4>¿Como acceder a MySQL?</h4>
+            <p>Para acceder a <strong>MySQL</strong> basta usar el comando <kbd>mysql -u root</kbd> y así de esta forma acceder sin especificar una contraseña al usuario root de <strong>MySQL</strong>.</p>
+
+            <p>Algunos comandos útiles para la gestión de <strong>MySQL v5.7</strong> son los siguientes:</p>
+            <!-- Lista desordenada -->
+            <ul>
+                <li><kbd>SHOW DATABASES;</kbd> Imprime las <strong>base de datos</strong> existentes en <strong>MySQL</strong>.</li>
+                <li><kbd>CREATE DATABASE [nombre];</kbd> Permite crear una <strong>base de datos</strong>.</li>
+                <li><kbd>USE [database-name];</kbd> Permite usar una <strong>base de datos</strong> identificándola por su nombre.</li>
+                <li><kbd>SHOW TABLES;</kbd> Imprime las tablas existentes de una <strong>base de datos</strong>. Se debe estar posicionado dentro de dicha <strong>base de datos</strong>.</li>
+                <li><kbd>DESCRIBE [database-name].[table];</kbd> o <kbd>SHOW COLUMNS FROM mysql.db;</kbd> Describe la estructura de una tabla de una <strong>base de datos</strong>.</li>
+                <li><kbd>CREATE TABLES [name] (..., ..., ...)</kbd> Permite crear una tabla en una <strong>base de datos</strong> y especificar su diseño.</li>
+                <p>
+<pre>
+    CREATE TABLE books (
+        book_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        title VARCHAR(60) NOT NULL,
+        author VARCHAR(100) NOT NULL,
+        publisher_id INTEGER UNSIGNED NOT NULL,
+        price DECIMAL(5,2)
+    );
+</pre>
+                <!-- Lista desordenada -->
+                <ul>
+                    <li><strong>UNSIGNED:</strong> Impide usar números negativos en una columna.</li>
+                    <li><strong>PRIMARY KEY:</strong> Identifica a la llave primaria (por defecto es única).</li>
+                    <li><strong>AUTO_INCREMENT:</strong> Establece un número que se irá incrementando automáticamente.</li>
+                </ul>
+                </p>
+                <p>
+<pre>
+    CREATE TABLE publishers (
+        publisher_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(100) NOT NULL,
+        country VARCHAR(20)
+    );
+</pre>
+                </p>
+                <p>
+<pre>
+    CREATE TABLE users (
+        user_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL UNIQUE
+    );
+</pre>
+                <!-- Lista desordenada -->
+                <ul>
+                    <li><strong>UNIQUE:</strong> Garantiza que no existan valores repetidos en una columna, es decir, solo un email por usuario.</li>
+                </ul>
+                </p>
+            </ul>
+
         </section>
 
         <section>
