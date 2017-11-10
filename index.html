@@ -201,24 +201,28 @@
                 <li><kbd>SHOW TABLES;</kbd> Imprime las tablas existentes de una <strong>base de datos</strong>. Se debe estar posicionado dentro de dicha <strong>base de datos</strong>.</li>
                 <li><kbd>DESCRIBE [database-name].[table];</kbd> o <kbd>SHOW COLUMNS FROM mysql.db;</kbd> Describe la estructura de una tabla de una <strong>base de datos</strong>.</li>
                 <li><kbd>CREATE TABLES [name] (..., ..., ...)</kbd> Permite crear una tabla en una <strong>base de datos</strong> y especificar su diseño.</li>
-                <p>
+            </ul>
+            <p>
 <pre>
     CREATE TABLE books (
         book_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
         title VARCHAR(60) NOT NULL,
+        description TEXT,
         author VARCHAR(100) NOT NULL,
         publisher_id INTEGER UNSIGNED NOT NULL,
-        price DECIMAL(5,2)
+        price DECIMAL(5,2),
+        copies INT NOT NULL DEFAULT 0
     );
 </pre>
-                <!-- Lista desordenada -->
-                <ul>
-                    <li><strong>UNSIGNED:</strong> Impide usar números negativos en una columna.</li>
-                    <li><strong>PRIMARY KEY:</strong> Identifica a la llave primaria (por defecto es única).</li>
-                    <li><strong>AUTO_INCREMENT:</strong> Establece un número que se irá incrementando automáticamente.</li>
-                </ul>
-                </p>
-                <p>
+            <!-- Lista desordenada -->
+            <ul>
+                <li><strong>UNSIGNED:</strong> Impide usar números negativos en una columna.</li>
+                <li><strong>PRIMARY KEY:</strong> Identifica a la llave primaria (por defecto es única).</li>
+                <li><strong>AUTO_INCREMENT:</strong> Establece un número que se irá incrementando automáticamente.</li>
+                <li><strong>NOT NULL:</strong> Obliga a que el campo no quede vacío.</li>
+            </ul>
+            </p>
+            <p>
 <pre>
     CREATE TABLE publishers (
         publisher_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -226,8 +230,8 @@
         country VARCHAR(20)
     );
 </pre>
-                </p>
-                <p>
+            </p>
+            <p>
 <pre>
     CREATE TABLE users (
         user_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -235,12 +239,48 @@
         email VARCHAR(100) NOT NULL UNIQUE
     );
 </pre>
+            <!-- Lista desordenada -->
+            <ul>
+                <li><strong>UNIQUE:</strong> Garantiza que no existan valores repetidos en una columna, es decir, solo un email por usuario.</li>
+            </ul>
+            </p>
+
+            <h3>Creación de tablas mediante la arquitectura de información (buenas prácticas)</h3>
+
+            <p>
+<pre>
+    CREATE TABLE actions (
+        action_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        book_id INTEGER UNSIGNED NOT NULL,
+        user_id INTEGER UNSIGNED NOT NULL,
+        action_type ENUM('venta', 'prestamo', 'devolucion') NOT NULL,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+</pre>
                 <!-- Lista desordenada -->
                 <ul>
-                    <li><strong>UNIQUE:</strong> Garantiza que no existan valores repetidos en una columna, es decir, solo un email por usuario.</li>
+                    <li><strong>ENUM('...', '...', ...):</strong> Especifica los valores que se almacenaran y los hace obligatorios.</li>
+                    <li><strong>DEFAULT 'valor'/variable:</strong> Especifica un valor por defecto.</li>
+                    <li><strong>TIMESTAMP:</strong> Retorna la fecha en la que se crea el registro. El formato por defecto de TIMESTAMP es 2017-31-12 24:59:59.</li>
                 </ul>
-                </p>
+            </p>
+
+            <p>
+<pre>
+    INSERT INTO publishers (name, country)
+        VALUES ('Platzi', 'USA');
+</pre>
+            </p>
+
+            <!-- Lista desordenada -->
+            <ul>
+                <li><kbd>SELECT [*] FROM [table-name];</kbd> Imprime los registros almacenados en una tabla.</li>
+                <li><kbd>SELECT [*] FROM [table-name] WHERE [column] = ['valor'] \G</kbd> Imprime el (o los) registro(s) que coincida con la instrucción dada. La <code>\G</code> al final le indica a <strong>MySQL</strong> que los datos se debe mostrar con un "diseño" de tarjeta.</li>
+                <li><kbd>SELECT count([*]) FROM [table-name];</kbd> Imprime la cardinalidad (número) de un conjunto de elementos.</li>
+                <li><kbd>TRUMCATE [table-name];</kbd> Elimina todas las filas de una tabla y reinicia el contador de la clave primaria (en caso de estar "automático"), en otras palabras, TRUMCATE borra todo lo que exista dentro de la tabla menos la definición de la misma.</li>
+                <li><kbd>DROP TABLE [table-name];</kbd> Elimina una tabla <b>por completo</b> de la <strong>base de datos</strong> (en la que se encuentra posicionado).</li>
             </ul>
+            <p><strong>Nota:</strong> Los asteriscos determinan que se seleccionarán <strong>todas las columnas</strong> de una tabla. El asterisco puede ser reemplazado por una columna en particular, así se optimizará el tiempo de respuesta.</p>
 
         </section>
 
