@@ -275,12 +275,128 @@
             <!-- Lista desordenada -->
             <ul>
                 <li><kbd>SELECT [*] FROM [table-name];</kbd> Imprime los registros almacenados en una tabla.</li>
+                <li><kbd>SELECT [column] FROM [table-name] AS [alias];</kbd> Selecciona e imprime una columna asignándole un alias.</li>
                 <li><kbd>SELECT [*] FROM [table-name] WHERE [column] = ['valor'] \G</kbd> Imprime el (o los) registro(s) que coincida con la instrucción dada. La <code>\G</code> al final le indica a <strong>MySQL</strong> que los datos se debe mostrar con un "diseño" de tarjeta.</li>
                 <li><kbd>SELECT count([*]) FROM [table-name];</kbd> Imprime la cardinalidad (número) de un conjunto de elementos.</li>
-                <li><kbd>TRUMCATE [table-name];</kbd> Elimina todas las filas de una tabla y reinicia el contador de la clave primaria (en caso de estar "automático"), en otras palabras, TRUMCATE borra todo lo que exista dentro de la tabla menos la definición de la misma.</li>
+                <li><kbd>TRUNCATE [table-name];</kbd> Elimina todas las filas de una tabla y reinicia el contador de la clave primaria (en caso de estar "automático"), en otras palabras, TRUNCATE borra todo lo que exista dentro de la tabla menos la definición de la misma.</li>
                 <li><kbd>DROP TABLE [table-name];</kbd> Elimina una tabla <b>por completo</b> de la <strong>base de datos</strong> (en la que se encuentra posicionado).</li>
             </ul>
             <p><strong>Nota:</strong> Los asteriscos determinan que se seleccionarán <strong>todas las columnas</strong> de una tabla. El asterisco puede ser reemplazado por una columna en particular, así se optimizará el tiempo de respuesta.</p>
+
+            <h3>Cómo crear relaciones entre tablas y estructurar datos</h3>
+            <p>Una clausura <strong>JOIN</strong> se usa para combinar filas de dos o más tablas, basada en una relación de columnas entre ellas.</p>
+            
+            <h4>Tipos de JOINs</h4>
+            <p>
+                Existen diferentes tipos de <strong>JOINs</strong> entre las cuales se destacan principalmente:
+                <!-- Lista desordenada -->
+                <ul>
+                    <li>
+                        <strong>(INNER) JOIN:</strong> Retorna sólo los registros que coincidan entre ambas tablas.
+                        <div class="row">
+                            <p>
+                                <div class="col-md-6">
+<pre>
+    SELECT
+        usuarios.name,
+        libros.title
+    FROM users AS usuarios
+    INNER JOIN books AS libros
+        ON usuarios.user_id = libros.book_id;
+</pre>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="https://www.w3schools.com/sql/img_innerjoin.gif" alt="INNER JOIN" class="img-responsive">
+                                </div>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>LEFT JOIN:</strong> Retorna todos los registros de la tabla izquierda (A) junto con los registros que coinciden con la tabla derecha (B). La prioridad es de la tabla A.
+                        <div class="row">
+                            <p>
+                                <div class="col-md-6">
+<pre>
+    SELECT
+        usuarios.name,
+        libros.title
+    FROM users AS usuarios
+    LEFT JOIN books AS libros
+        ON usuarios.user_id = libros.book_id;
+</pre>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="https://www.w3schools.com/sql/img_leftjoin.gif" alt="LEFT JOIN" class="img-responsive">
+                                </div>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>RIGHT JOIN:</strong> Retorna todos los registros de la tabla derecha (B) junto con los registros que coinciden con la tabla izquierda (A). La prioridad es de al tabla B.
+                        <div class="row">
+                            <p>
+                                <div class="col-md-6">
+<pre>
+    SELECT
+        usuarios.name,
+        libros.title
+    FROM users AS usuarios
+    RIGHT JOIN books AS libros
+        ON usuarios.user_id = libros.book_id;
+</pre>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="https://www.w3schools.com/sql/img_rightjoin.gif" alt="LEFT JOIN" class="img-responsive">
+                                </div>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>FULL JOIN:</strong> Retorna todos los registros de la tabla izquierda (A) y derecha (B) siempre y cuando los registros coincidan. Es la combinación entre <strong>LEFT JOIN</strong> y <strong>RIGHT JOIN</strong>.
+                        <p><b>Nota importante:</b> En <strong>MySQL</strong> no existe <code>FULL JOIN</code> pero con la siguiente sintaxis se puede "emular".</p>
+                        <div class="row">
+                            <p>
+                                <div class="col-md-6">
+<pre>
+    SELECT
+        usuarios.name,
+        libros.title
+    FROM users AS usuarios
+    LEFT JOIN books AS libros
+        ON usuarios.name = libros.title
+    UNION
+    SELECT
+        usuarios.name,
+        libros.title
+    FROM users AS usuarios
+    RIGHT JOIN books AS libros
+        ON usuarios.name = libros.title;
+</pre>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="https://www.w3schools.com/sql/img_fulljoin.gif" alt="LEFT JOIN" class="img-responsive">
+                                </div>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </p>
+
+            <p>Continuando con el proyecto y dandole prioridad a la tabla <strong>actions</strong> con la siguiente consulta se relacionarán todas las acciones con las diferentes tablas.</p>
+            <p>
+<pre>
+    SELECT
+        acciones.action_id
+        libros.title,
+        acciones.action_type,
+        usuarios.name
+    FROM actions AS acciones
+    LEFT JOIN books AS libros
+        ON acciones.book_id = libros.book_id
+    LEFT JOIN users AS usuarios
+        ON acciones.user_id = usuarios.user_id;
+</pre>
+            </p>
 
         </section>
 
